@@ -1,0 +1,281 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link type="image/x-icon" rel="shortcut icon" href="https://verizonimage.funmily.com/upload/platform/phpgrid/20140626163225110.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <title>魔能元素检测器</title>
+<style>
+div {
+    margin: auto;
+}
+div.block {
+    width: 800px;
+    height: 710px;
+    background-image: url(https://i.imgur.com/2X0I34c.png);
+}
+
+div.thanks{
+    height: 290px;
+    width: 800px;
+    background-image: url(https://i.imgur.com/xZc5YLa.png);
+}
+
+div.space {
+    margin: 20px;
+}
+
+body{
+    background-color: black;
+}
+
+fieldset{
+    display: inline-block;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: relative;
+  bottom: 0;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+
+div ul li a:hover{
+    text-decoration: none;
+    color:white;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+	background-color: #F5F5F5;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: #F90;	
+	background-image: -webkit-linear-gradient(45deg,
+	                                          rgba(255, 255, 255, .2) 25%,
+											  transparent 25%,
+											  transparent 50%,
+											  rgba(255, 255, 255, .2) 50%,
+											  rgba(255, 255, 255, .2) 75%,
+											  transparent 75%,
+											  transparent) 
+}
+</style>
+</head>
+<body onload='idkwhattoname()'>
+<div class='block'>
+<div style="height: 187px;">
+
+</div>
+<div style="height: 49px;">
+    <ul>
+        <li><a href="code.html">代码专区</a></li>
+        <li><a class="active" href="detetor.html">魔能元素检测器</a></li>
+        <li><a href="custom.html">地标代码</a></li>
+        <li><a href="meonly.html">我的专区</a></li>
+        <li><a href="chat.html">闲聊区</a></li>
+    </ul>
+</div>
+<div class="space">
+<div class="alert alert-info" role="alert">
+    <strong>绿色技能为可开元素，红色则不能。</strong>
+</div>
+
+<p><strong>原有MP: </strong><input id='ori' type='text'> <button class="btn btn-success btn-xs" id='confirm' onclick='init()'>确定</button></p>
+<p><strong>当前MP: </strong><input id='current' type='text' disabled> <button class="btn btn-info btn-xs" id='reset' onclick='reset()'>重置</button></p> 
+
+<fieldset>
+    <legend>
+        <img data-toggle="tooltip" title="飞羽" src="https://i.imgur.com/V82rWNs.png">
+    </legend>
+    <button class='a btn btn-xs' id='a1' onclick="recalculate(20)">等级1</button>
+    <button class='a btn btn-xs' id='a2' onclick="recalculate(30)">等级2</button>
+    <button class='a btn btn-xs' id='a3' onclick="recalculate(30)">等级3</button>
+    <button class='a btn btn-xs' id='a4' onclick="recalculate(60)">等级4</button>
+    <button class='a btn btn-xs' id='a5' onclick="recalculate(60)">等级5</button>
+    <button class='a btn btn-xs' id='a6' onclick="recalculate(100)">等级6</button>
+    <button class='a btn btn-xs' id='a7' onclick="recalculate(100)">等级7</button>
+    <button class='a btn btn-xs' id='a8' onclick="recalculate(200)">等级8</button>
+    <button class='a btn btn-xs' id='a9' onclick="recalculate(200)">等级9</button>
+</fieldset>
+
+<br>
+<br>
+
+<fieldset>
+    <legend>
+        <img data-toggle="tooltip" title="冰锥" src="https://imgur.com/JWhZe8q.png">
+        <img data-toggle="tooltip" title="炎爆" src="https://imgur.com/h7V3nV0.png?2">
+        <img data-toggle="tooltip" title="陨石" src="https://imgur.com/b7tdfYi.png?2">
+        <img data-toggle="tooltip" title="台风" src="https://imgur.com/SLW76XH.png?2">
+    </legend>
+    <button class='b btn btn-xs' id='b1' onclick="recalculate(40)">等级1</button>
+    <button class='b btn btn-xs' id='b2' onclick="recalculate(60)">等级2</button>
+    <button class='b btn btn-xs' id='b3' onclick="recalculate(60)">等级3</button>
+    <button class='b btn btn-xs' id='b4' onclick="recalculate(100)">等级4</button>
+    <button class='b btn btn-xs' id='b5' onclick="recalculate(100)">等级5</button>
+    <button class='b btn btn-xs' id='b6' onclick="recalculate(200)">等级6</button>
+    <button class='b btn btn-xs' id='b7' onclick="recalculate(200)">等级7</button>
+    <button class='b btn btn-xs' id='b8' onclick="recalculate(300)">等级8</button>
+    <button class='b btn btn-xs' id='b9' onclick="recalculate(300)">等级9</button>
+</fieldset>
+
+<br>
+<br>
+
+<fieldset>
+    <legend>
+        <img data-toggle="tooltip" title="大地之怒" src="https://imgur.com/CHDWoCu.png?2">
+        <img data-toggle="tooltip" title="雲淡風輕" src="https://imgur.com/0hdtTYr.png?2">
+        <img data-toggle="tooltip" title="驚濤駭浪" src="https://imgur.com/ILSaJRV.png?2">
+        <img data-toggle="tooltip" title="怒焰沖天" src="https://imgur.com/nBiJdiM.png?2">
+    </legend>
+    <button class='c btn btn-xs' id='c1' onclick="recalculate(60)">等级1</button>
+    <button class='c btn btn-xs' id='c2' onclick="recalculate(100)">等级2</button>
+    <button class='c btn btn-xs' id='c3' onclick="recalculate(100)">等级3</button>
+    <button class='c btn btn-xs' id='c4' onclick="recalculate(200)">等级4</button>
+    <button class='c btn btn-xs' id='c5' onclick="recalculate(200)">等级5</button>
+    <button class='c btn btn-xs' id='c6' onclick="recalculate(400)">等级6</button>
+    <button class='c btn btn-xs' id='c7' onclick="recalculate(400)">等级7</button>
+    <button class='c btn btn-xs' id='c8' onclick="recalculate(800)">等级8</button>
+    <button class='c btn btn-xs' id='c9' onclick="recalculate(800)">等级9</button>
+</fieldset>
+
+</div>
+</div>
+<div style="height: 49px;background-color: #333;width:800px;"></div>
+<div class="thanks"></div>
+<script>
+
+function idkwhattoname(){
+    var all = document.getElementsByTagName('button');
+    for(var i = 0;i<all.length;i++){
+        all[i].setAttribute('disabled','disabled')
+    }
+
+    var confirm = document.getElementById('confirm');
+    confirm.disabled = false;
+}
+
+function init(){
+    var all = document.getElementsByTagName('button');
+    for(var i = 0;i<all.length;i++){
+        all[i].disabled = false;
+    }
+
+    var ori = document.getElementById('ori');
+    ori.disabled = true;
+    var current = document.getElementById('current');
+    current.value = ori.value;
+
+    var reset = document.getElementById('reset');
+
+    var confirm = document.getElementById('confirm');
+    confirm.disabled = true;
+
+    calculate();
+}
+
+function reset(){
+    var all = document.getElementsByTagName('button');
+    for(var i = 0;i<all.length;i++){
+        all[i].setAttribute('disabled','disabled')
+    }
+
+    var confirm = document.getElementById('confirm');
+    confirm.disabled = false;
+
+    var ori = document.getElementById('ori');
+    ori.disabled = false;
+    ori.value = '';
+
+    var current = document.getElementById('current');
+    current.value = '';
+}
+
+function calculate(){
+    var current = document.getElementById('current').value;
+    
+    var a = [20,30,30,60,60,100,100,200,200];
+
+    var b = [40,60,60,100,100,200,200,300,300];
+
+    var c = [60,100,100,200,200,400,400,800,800];
+
+    var as = document.getElementsByClassName('a');
+    var bs = document.getElementsByClassName('b');
+    var cs = document.getElementsByClassName('c');
+
+
+    for(var i = 0;i < a.length;i++){
+        if((current-a[i]) % 3 == 2){
+            as[i].setAttribute('class','a btn btn-success btn-xs');
+        }else{
+            as[i].setAttribute('class','a btn btn-danger btn-xs');
+        }
+    }
+
+    for(var i = 0;i < a.length;i++){
+        if((current-b[i]) % 3 == 1){
+            bs[i].setAttribute('class','b btn btn-success btn-xs');
+        }else{
+            bs[i].setAttribute('class','b btn btn-danger btn-xs');
+        }
+    }
+
+    for(var i = 0;i < a.length;i++){
+        if((current-c[i]) % 3 == 0){
+            cs[i].setAttribute('class','c btn btn-success btn-xs');
+        }else{
+            cs[i].setAttribute('class','c btn btn-danger btn-xs');
+        }
+    }
+
+}
+
+function recalculate(mana){
+    document.getElementById('current').value -= mana; 
+    calculate();
+}
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+</body>

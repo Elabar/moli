@@ -1,0 +1,345 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link type="image/x-icon" rel="shortcut icon" href="https://verizonimage.funmily.com/upload/platform/phpgrid/20140626163225110.ico">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>我的专区</title>
+<style>
+div {
+    margin:auto;
+}
+
+
+
+div.block {
+    width: 800px;
+    height: 710px;
+    background-image: url(https://i.imgur.com/2X0I34c.png);
+}
+
+div.thanks{
+    height: 290px;
+    width: 800px;
+    background-image: url(https://i.imgur.com/xZc5YLa.png);
+}
+
+body{
+    background-color: black;
+}
+
+ul.navigation {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+    bottom: 0;
+}
+
+div.space {
+    margin: 20px;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+div ul li a:hover{
+    text-decoration: none;
+    color:white;
+}
+
+.hori-select{
+    display:inline;
+    background-color: white;
+    margin:0;
+    padding:0;
+    
+}
+.btn {
+    margin-right:5px;
+    margin-bottom:5px;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+    
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: #F90;	
+    background-image: -webkit-linear-gradient(45deg,
+                                                rgba(255, 255, 255, .2) 25%,
+                                                transparent 25%,
+                                                transparent 50%,
+                                                rgba(255, 255, 255, .2) 50%,
+                                                rgba(255, 255, 255, .2) 75%,
+                                                transparent 75%,
+                                                transparent) 
+}
+</style>
+</head>
+<div class='block'>
+<div style="height: 187px;">
+
+</div>
+<div style="height: 49px;">
+    <ul class="navigation">
+        <li><a href="code.html">代码专区</a></li>
+        <li><a href="detetor.html">魔能元素检测器</a></li>
+        <li><a href="custom.html">地标代码</a></li>
+        <li><a class="active" href="meonly.html">我的专区</a></li>
+        <li><a href="chat.html">闲聊区</a></li>
+    </ul>
+</div>
+<div class="space">
+<body onload="retrieve()">
+    <div id="notification" class="alert alert-info" role="alert">
+        <strong id="notiText">你可以在这里随心制作自己喜欢的代码，制作后的代码也不会消失。</strong>
+    </div>
+    <table class="table">
+    <tbody>
+    <tr class="bg-warning">
+    <td><strong>代码名称</strong></td>
+    <td><input type="text" id="title" placeholder="飞王地图"></td>
+    </tr>
+    <tr class="bg-warning">
+    <td><strong>代码</strong></td>
+    <td><input type="text" id="code" style="width:100%" placeholder="[@MA|88|天空之城] [@MA|71|圣灵殿堂]"></td>
+    </tr>
+    <tr class="bg-warning">
+    <td><strong>按键颜色</strong></td>
+    <td>
+        <select id="color" class="js-example-responsive" style="width: 50%">
+            <option value="customized btn btn-xs">浅灰色</option>
+            <option value="customized btn btn-xs btn-default">白色</option>
+            <option value="customized btn btn-xs btn-danger">红色</option>
+            <option value="customized btn btn-xs btn-warning">橘色</option>
+            <option value="customized btn btn-xs btn-success">绿色</option>
+            <option value="customized btn btn-xs btn-primary">深蓝色</option>
+            <option value="customized btn btn-xs btn-info">浅蓝色</option>
+        </select>
+    </td>
+    </tr>
+    <tr class="bg-warning">
+    <td></td>
+    <td>
+        <input id="gen" onclick="generate()" class="btn btn-xs btn-primary" type="button" value="产出自定义快捷键">
+        <input id="res" onclick="reset()" class="btn btn-xs btn-warning" type="button" value="重置快捷键">
+        <input onclick="deleteMode(this)" class="btn btn-xs btn-danger" type="button" value="删除模式">
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    <fieldset>
+        <legend><strong>我的代码</strong></legend>
+        <div id="placehere"></div>
+    </fieldset>
+    <span class="abgne"></span>
+</div>
+</div>
+<span class="abgne"></span>
+<div style="height: 49px;background-color: #333;width:800px;">
+</div>
+<div class="thanks"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script>
+// Check browser support
+if (typeof(Storage) == "undefined") {
+    //output something to say the browser is not supported
+}
+
+function retrieve(){
+    if (localStorage.getItem("titles") === null) {
+        var titles = [];
+        var codes = [];
+        localStorage.setItem("titles",JSON.stringify(titles));
+        localStorage.setItem("codes",JSON.stringify(codes));
+        localStorage.setItem("total",0);
+        localStorage.setItem("colors",JSON.stringify(codes));
+    }else{
+        var empty = [];
+        var titles = JSON.parse(localStorage.getItem("titles"));
+        var codes = JSON.parse(localStorage.getItem("codes"));
+        //moving old user to this new one
+        if(localStorage.getItem("colors") === null){
+            localStorage.setItem("colors",JSON.stringify(empty));
+            
+            var tempColors = JSON.parse(localStorage.getItem("colors"));
+            for(var i = 0;i < titles.length;i++){
+                tempColors.push("customized btn btn-xs btn-default");
+            }
+            localStorage.setItem("colors",JSON.stringify(tempColors));
+        }
+        var colors = JSON.parse(localStorage.getItem("colors"));
+
+        for(let i = 0;i < titles.length;i++){
+            
+            var button1 = document.createElement("button");
+            button1.appendChild(document.createTextNode(titles[i]));
+            button1.setAttribute("class",colors[i]);
+            button1.setAttribute("data-toggle","tooltip");
+            button1.setAttribute("data-original-title","一键复制代码");
+            button1.setAttribute("dataIndex",i);
+            var btns = document.querySelectorAll('.customized');
+            var clipboard = new ClipboardJS(btns);
+            var divs = document.querySelectorAll('span');
+            var clip = new ClipboardJS(divs);
+
+            
+            var div = document.getElementById("placehere");
+            div.appendChild(button1);
+            $('[data-toggle="tooltip"]').tooltip();
+            button1.addEventListener('click', function(){
+                var abgne = document.querySelector('.abgne');
+                abgne.setAttribute('data-clipboard-text', codes[i]);
+                abgne.click();
+            });
+
+            button1.setAttribute('onclick','boom(this)');
+            localStorage.setItem("total",i+1);
+        }
+    }
+}
+
+function deleteMode(btn){
+    var btns = document.querySelectorAll('.customized');
+    for(let i = 0;i<btns.length;i++){
+        btns[i].setAttribute("data-original-title","删除此代码");
+        btns[i].setAttribute("onclick","deleteThis(this)");
+
+        var ori = btns[i].innerHTML;
+        btns[i].innerHTML = '<i class="fa fa-trash"></i> ' + ori;
+    }
+    btn.value = "退出删除模式";
+    btn.setAttribute("onclick","done()");
+
+    var div = document.getElementById("notification");
+    document.getElementById("notiText").innerHTML = "已进入删除模式，在完成删除操作后请刷新页面或点击“退出删除模式”。";
+    div.setAttribute("class","alert alert-danger");
+    
+    document.getElementById("gen").setAttribute("disabled","true");
+    document.getElementById("res").setAttribute("disabled","true");
+}
+
+function done(){
+    location.reload();
+}
+
+function deleteThis(btn){
+    btn.remove();
+    $(btn).tooltip('destroy');
+    var titles = JSON.parse(localStorage.getItem("titles"));
+    var codes = JSON.parse(localStorage.getItem("codes"));
+    var colors = JSON.parse(localStorage.getItem("colors"));
+    var total = Number(localStorage.getItem("total"));
+    var target = btn.getAttribute("dataIndex");
+
+    titles.splice(target,1);
+    codes.splice(target,1);
+    colors.splice(target,1);
+
+    localStorage.setItem("titles",JSON.stringify(titles));
+    localStorage.setItem("codes",JSON.stringify(codes));
+    localStorage.setItem("colors",JSON.stringify(colors));
+    localStorage.setItem("total",total-1);
+
+    var btns = document.querySelectorAll('.customized');
+    for(let i = 0;i<btns.length;i++){
+        btns[i].setAttribute("dataIndex",i);
+    }
+}
+
+function generate(){
+    var title = document.getElementById("title").value;
+    var code = document.getElementById("code").value;
+    var index = Number(localStorage.getItem("total"));
+    document.getElementById("title").value = "";
+    document.getElementById("code").value = "";
+    var button1 = document.createElement("button");
+    button1.appendChild(document.createTextNode(title));
+    var className = document.getElementById("color").options[document.getElementById("color").selectedIndex].value;
+    button1.setAttribute("class",className);
+    button1.setAttribute("data-toggle","tooltip");
+    button1.setAttribute("data-original-title","一键复制代码");
+    button1.setAttribute("dataIndex",index);
+    var btns = document.querySelectorAll('.customized');
+    var clipboard = new ClipboardJS(btns);
+    var divs = document.querySelectorAll('span')
+    var clip = new ClipboardJS(divs);
+
+    
+    var div = document.getElementById("placehere");
+    div.appendChild(button1);
+    $('[data-toggle="tooltip"]').tooltip();
+    button1.addEventListener('click', function(){
+        var abgne = document.querySelector('.abgne');
+        abgne.setAttribute('data-clipboard-text', code);
+        abgne.click();
+    });
+    
+    button1.setAttribute('onclick','boom(this)');
+
+    var titles = JSON.parse(localStorage.getItem("titles"));
+    var codes = JSON.parse(localStorage.getItem("codes"));
+    var colors = JSON.parse(localStorage.getItem("colors"));
+    titles.push(title);
+    codes.push(code);
+    colors.push(className);
+    localStorage.setItem("titles",JSON.stringify(titles));
+    localStorage.setItem("codes",JSON.stringify(codes));
+    localStorage.setItem("colors",JSON.stringify(colors));
+    localStorage.setItem("total",index+1);
+}
+
+function reset(){
+    var titles = [];
+    var codes = [];
+    localStorage.setItem("titles",JSON.stringify(titles));
+    localStorage.setItem("codes",JSON.stringify(codes));
+    localStorage.setItem("colors",JSON.stringify(codes));
+    localStorage.setItem("total",0);
+    location.reload();
+}
+</script>
+
+<script>
+
+function boom(element){
+    $(element).attr('data-original-title','代码已复制').tooltip('fixTitle').tooltip('show');
+    $(element).tooltip().attr('data-original-title','一键复制代码');
+}
+</script>
+</body>
+</html>

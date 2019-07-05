@@ -1,0 +1,279 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link type="image/x-icon" rel="shortcut icon" href="https://verizonimage.funmily.com/upload/platform/phpgrid/20140626163225110.ico">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <title>地标代码</title>
+<style>
+div {
+    margin:auto;
+}
+
+fieldset{
+    width:300px;
+    margin: 20px;
+    margin-left: 40px;
+}
+
+div.block {
+    width: 800px;
+    height: 710px;
+    background-image: url(https://i.imgur.com/2X0I34c.png);
+}
+
+div.thanks{
+    height: 290px;
+    width: 800px;
+    background-image: url(https://i.imgur.com/xZc5YLa.png);
+}
+
+body{
+    background-color: black;
+}
+
+ul.navigation {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+    bottom: 0;
+}
+
+div.space {
+    margin: 20px;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+div ul li a:hover{
+    text-decoration: none;
+    color:white;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+    
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: #F90;	
+    background-image: -webkit-linear-gradient(45deg,
+                                                rgba(255, 255, 255, .2) 25%,
+                                                transparent 25%,
+                                                transparent 50%,
+                                                rgba(255, 255, 255, .2) 50%,
+                                                rgba(255, 255, 255, .2) 75%,
+                                                transparent 75%,
+                                                transparent) 
+}
+</style>
+</head>
+<body>
+<div class='block'>
+<div style="height: 187px;">
+
+</div>
+<div style="height: 49px;">
+    <ul class="navigation">
+        <li><a href="code.html">代码专区</a></li>
+        <li><a href="detetor.html">魔能元素检测器</a></li>
+        <li><a class="active" href="custom.html">地标代码</a></li>
+        <li><a href="meonly.html">我的专区</a></li>
+        <li><a href="chat.html">闲聊区</a></li>
+    </ul>
+</div>
+<div class="space">
+<div class="alert alert-info" role="alert">
+  <strong>数据可能有漏或错字，但相信已包括所有的飞贼图。</strong>
+</div>
+<div class="alert alert-warning" role="alert">
+  <strong>代码里的逗号必须是英文字符的","而不是"，"</strong>
+</div>
+<select onchange="validate()" id="map" class="js-example-responsive" style="width: 50%">
+
+<option></option>
+
+<optgroup label="野外">
+<option value="[@MA|2|出云东郊] [@POS|2|">出云东郊</option>
+<option value="[@MA|3|云台原野] [@POS|3|">云台原野</option>
+<option value="[@MA|4|禅意境地] [@POS|4|">禅意境地</option>
+<option value="[@MA|5|黎阳村] [@POS|5|">黎阳村</option>
+<option value="[@MA|6|黎阳湖南] [@POS|6|">黎阳湖南</option>
+<option value="[@MA|7|群竹古道] [@POS|7|">群竹古道</option>
+<option value="[@MA|8|塔克草原] [@POS|8|">塔克草原</option>
+<option value="[@MA|14|虚空沙海] [@POS|14|">虚空沙海</option>
+<option value="[@MA|15|黎阳湖北] [@POS|15|">黎阳湖北</option>
+<option value="[@MA|16|玉峰林] [@POS|16|">玉峰林</option>
+<option value="[@MA|17|黎阳岛] [@POS|17|">黎阳岛</option>
+<option value="[@MA|18|奇石幻地] [@POS|18|">奇石幻地</option>
+<option value="[@MA|19|铃兰盆地] [@POS|19|">铃兰盆地</option>
+<option value="[@MA|20|圣约之地] [@POS|20|">圣约之地</option>
+<option value="[@MA|21|止风峡谷] [@POS|21|">止风峡谷</option>
+<option value="[@MA|22|雪域梅林] [@POS|22|">雪域梅林</option>
+<option value="[@MA|23|伏魔谷] [@POS|23|">伏魔谷</option>
+<option value="[@MA|24|守护之地] [@POS|24|">守护之地</option>
+<option value="[@MA|26|曙光平原] [@POS|26|">曙光平原</option>
+<option value="[@MA|27|沉睡森林] [@POS|27|">沉睡森林</option>
+<option value="[@MA|28|云丽山脉] [@POS|28|">云丽山脉</option>
+<option value="[@MA|29|迷之光屿] [@POS|29|">迷之光屿</option>
+<option value="[@MA|33|朵拉雪地] [@POS|33|">朵拉雪地</option>
+<option value="[@MA|34|樱舞仙境] [@POS|34|">樱舞仙境</option>
+<option value="[@MA|35|冰石雪原] [@POS|35|">冰石雪原</option>
+<option value="[@MA|36|神遗幻境] [@POS|36|">神遗幻境</option>
+<option value="[@MA|37|古城遗迹] [@POS|37|">古城遗迹</option>
+<option value="[@MA|40|云天绿洲] [@POS|40|">云天绿洲</option>
+<option value="[@MA|41|禁忌平原] [@POS|41|">禁忌平原</option>
+<option value="[@MA|42|愤怒谷道] [@POS|42|">愤怒谷道</option>
+<option value="[@MA|43|断谷极地] [@POS|43|">断谷极地</option>
+<option value="[@MA|44|登云高地] [@POS|44|">登云高地</option>
+<option value="[@MA|55|凋零孤村] [@POS|55|">凋零孤村</option>
+<option value="[@MA|56|魅惑森林] [@POS|56|">魅惑森林</option>
+<option value="[@MA|57|一号农场] [@POS|57|">一号农场</option>
+<option value="[@MA|58|二号农场] [@POS|58|">二号农场</option>
+<option value="[@MA|61|死息之岛] [@POS|61|">死息之岛</option>
+<option value="[@MA|67|永夜港] [@POS|67|">永夜港</option>
+<option value="[@MA|69|吸血鬼乐园] [@POS|69|">吸血鬼乐园</option>
+<option value="[@MA|70|玛石雪原] [@POS|70|">玛石雪原</option>
+<option value="[@MA|71|圣灵殿堂] [@POS|71|">圣灵殿堂</option>
+<option value="[@MA|88|天空之城] [@POS|88|">天空之城</option>
+</optgroup>
+
+<optgroup label="城市/村子">
+<option value="[@MA|1|出云村] [@POS|1|">出云村</option>
+<option value="[@MA|10|精灵城] [@POS|10|">精灵城</option>
+<option value="[@MA|30|眷顾之城] [@POS|30|">眷顾之城</option>
+<option value="[@MA|31|仙朵拉城] [@POS|31|">仙朵拉城</option>
+<option value="[@MA|38|庞贝城] [@POS|38|">庞贝城</option>
+</optgroup>
+
+<optgroup label="学院">
+<option value="[@MA|11|撩云学院] [@POS|11|">撩云学院</option>
+<option value="[@MA|12|磐地学院] [@POS|12|">磐地学院</option>
+<option value="[@MA|13|灵舞学院] [@POS|13|">灵舞学院</option>
+<option value="[@MA|25|流火学院] [@POS|25|">流火学院</option>
+<option value="[@MA|32|天穹学院] [@POS|32|">天穹学院</option>
+<option value="[@MA|39|天曙学院] [@POS|39|">天曙学院</option>
+</optgroup>
+
+
+
+<optgroup label="特殊领域">
+<option value="[@MA|45|死亡梦境] [@POS|45|">死亡梦境</option>
+<option value="[@MA|46|剑魂梦境] [@POS|46|">剑魂梦境</option>
+<option value="[@MA|47|魔战空间] [@POS|47|">魔战空间</option>
+<option value="[@MA|48|镇魔塔] [@POS|48|">镇魔塔</option>
+<option value="[@MA|101|夺宝赛场] [@POS|101|">夺宝赛场</option>
+<option value="[@MA|102|钓鱼赛场] [@POS|102|">钓鱼赛场</option>
+</optgroup>
+</select>
+
+<input id="pos" type="text" placeholder="输入坐标，例子：23,56" onkeyup="validate()">
+
+<button id="generate" onclick=boom(this) data-toggle="tooltip" title="代码有误，请选择至少一个地图" class="btn btn-xs btn-danger">产出代码</button>
+</div>
+</div>
+<span class="abgne"></span>
+<div style="height: 49px;background-color: #333;width:800px;">
+</div>
+<div class="thanks"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+<script>
+    var btns = document.querySelectorAll('button');
+    var clipboard = new ClipboardJS(btns);
+    var divs = document.querySelectorAll('span')
+    var clip = new ClipboardJS(divs);
+    document.querySelector('button').addEventListener('click', function(){
+    var abgne = document.querySelector('.abgne');
+    var map = document.getElementById('map');
+    var text = map.options[map.selectedIndex].value;
+
+    var pos = document.getElementById("pos");
+    text += pos.value + "]" ;
+    abgne.setAttribute('data-clipboard-text', text);
+    abgne.click();
+});
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.js-example-responsive').select2({
+        placeholder: "请选择地图",
+        language: {
+        noResults: function (params) {
+            return "查无此图";
+        }}
+    });
+    
+});
+
+//$(document).ready(function() {
+//    $('[data-toggle="tooltip"]').tooltip();
+//});
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+function boom(element){
+    $(element).attr('data-original-title','代码已复制').tooltip('fixTitle').tooltip('show');
+    $(element).tooltip().attr('data-original-title','一键复制代码');
+}
+
+function validate(){
+    var format = /^\d{1,3}(,)\d{1,3}$/;
+    var input = document.getElementById("pos");
+    var button = document.getElementById("generate");
+    var map = document.getElementById("map").value;
+    if(map == ""){
+        button.setAttribute("class","btn btn-xs btn-danger");
+        button.setAttribute("data-original-title","代码有误，请选择至少一个地图")
+    }
+    else if(map){
+        if(input.value.match(format)){
+            button.setAttribute("class","btn btn-xs btn-success");
+            button.setAttribute("data-original-title","一键复制代码")
+        }else{
+            button.setAttribute("class","btn btn-xs btn-warning");
+            button.setAttribute("data-original-title","坐标格式有误，请做出相应的更正")
+        }
+    }
+    
+}
+</script>
+
+</body>
+</html>

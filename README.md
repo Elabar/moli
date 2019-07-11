@@ -9,3 +9,5 @@ A static game asistant.
 - 聊天室
 
 *：点击产出的按键/内置的按键以把相应的代码放置进电脑的剪贴板。
+
+网址为： moli.surge.sh

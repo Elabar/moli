@@ -95,7 +95,7 @@ div ul li a:hover{
 </style>
 </head>
 <body onload='idkwhattoname()'>
-<div class='block'>
+<div class='block off'>
 <div style="height: 187px;">
 
 </div>
@@ -110,11 +110,14 @@ div ul li a:hover{
 </div>
 <div class="space">
 <div class="alert alert-info" role="alert">
-    <strong>绿色技能为可开元素，红色则不能。</strong>
-</div>
+    <strong>绿色技能为可开元素，红色则不能。点击关灯以提高可视度。</strong>
 
-<p><strong>原有MP: </strong><input id='ori' type='text'> <button class="btn btn-success btn-xs" id='confirm' onclick='init()'>确定</button></p>
-<p><strong>当前MP: </strong><input id='current' type='text' disabled> <button class="btn btn-info btn-xs" id='reset' onclick='reset()'>重置</button></p> 
+   
+
+</div>
+<button class="btn" onclick="switchlight(this)" id="switchButton" style="float: right;background-color: #333;color:white;">关灯</button>
+<p><strong class="offtext">原有MP: </strong><input id='ori' type='text'> <button class="btn btn-success btn-xs" id='confirm' onclick='init()'>确定</button></p>
+<p><strong class="offtext">当前MP: </strong><input id='current' type='text' disabled> <button class="btn btn-info btn-xs" id='reset' onclick='reset()'>重置</button></p> 
 
 <fieldset>
     <legend>
@@ -175,9 +178,41 @@ div ul li a:hover{
 
 </div>
 </div>
-<div style="height: 49px;background-color: #333;width:800px;"></div>
-<div class="thanks"></div>
+<div style="height: 49px;background-color: #333;width:800px;" class="middleone off"></div>
+<div class="thanks off"></div>
 <script>
+
+function switchlight(element){
+    if(element.innerHTML === "关灯"){
+        var allElements = document.querySelectorAll(".off");
+        for(var i = 0; i < allElements.length; i++){
+            allElements[i].style.backgroundImage = "url()";
+            allElements[i].style.backgroundColor = "black";
+        }
+        element.style.backgroundColor = "orange";
+        element.innerHTML = "开灯";
+        
+        var texts = document.querySelectorAll(".offtext");
+        for(var i = 0;i < texts.length; i++){
+            texts[i].style.color = "white";
+        }
+    }
+    else{
+        var firstBanner = document.querySelectorAll(".block");
+        firstBanner[0].style.backgroundImage = "url(https://i.imgur.com/2X0I34c.png)";
+        var secondBanner = document.querySelectorAll(".thanks");
+        secondBanner[0].style.backgroundImage = "url(https://i.imgur.com/xZc5YLa.png)";
+        var middle = document.querySelectorAll(".middleone");
+        middle[0].style.backgroundColor = "#333";
+
+        var texts = document.querySelectorAll(".offtext");
+        for(var i = 0;i < texts.length; i++){
+            texts[i].style.color = "black";
+        }
+        element.style.backgroundColor = "#333";
+        element.innerHTML = "关灯";
+    }
+}
 
 function idkwhattoname(){
     var all = document.getElementsByTagName('button');
@@ -187,6 +222,9 @@ function idkwhattoname(){
 
     var confirm = document.getElementById('confirm');
     confirm.disabled = false;
+
+    var switchButton = document.getElementById('switchButton');
+    switchButton.disabled = false;
 }
 
 function init(){
@@ -223,6 +261,9 @@ function reset(){
 
     var current = document.getElementById('current');
     current.value = '';
+
+    var switchButton = document.getElementById('switchButton');
+    switchButton.disabled = false;
 }
 
 function calculate(){
@@ -263,6 +304,8 @@ function calculate(){
         }
     }
 
+    var switchButton = document.getElementById('switchButton');
+    switchButton.disabled = false;
 }
 
 function recalculate(mana){

@@ -194,6 +194,14 @@ div ul li a:hover{
 <div class="thanks off"></div>
 <script>
 
+var input = document.getElementById("ori");
+input.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("confirm").click();
+    }
+});
+
 function switchlight(element){
     if(element.innerHTML === "关灯"){
         var allElements = document.querySelectorAll(".off");

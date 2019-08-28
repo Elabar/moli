@@ -3,7 +3,7 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link type="image/x-icon" rel="shortcut icon" href="https://verizonimage.funmily.com/upload/platform/phpgrid/20140626163225110.ico">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>魔能元素检测器</title>
 <style>
 div {
@@ -98,7 +98,7 @@ div ul li a:hover{
 <div class='block off'>
 <div style="height: 187px;">
     <div class="alert alert-success" role="alert" style="text-align: center;">
-        <strong>Funmily远古神龙[♫夢の爷爷♫]：紫色活跃度宝箱带梅迪，1次1个，有兴趣者可在闲聊区留言或游戏里面找我</strong>
+        <strong>Funmily远古神龙[♫夢の爷爷♫]：紫色活跃度宝箱带梅迪,1次1个</strong>
     </div>
 </div>
 <div style="height: 49px;">
@@ -111,25 +111,25 @@ div ul li a:hover{
     </ul>
 </div>
 <div class="space">
-<button class="btn" onclick="switchlight(this)" id="switchButton" style="float: right;background-color: #333;color:white;">关灯</button>
+<button class="btn btn-sm" onclick="switchlight(this)" id="switchButton" style="float: right;background-color: #333;color:white;">关灯</button>
 <p>
-    <strong class="offtext">原有MP: </strong><input id='ori' type='text'> <button class="btn btn-success btn-xs" id='confirm' onclick='init()'>确定</button> 
-    <strong class="offtext">当前MP: </strong><input id='current' type='text' disabled> <button class="btn btn-info btn-xs" id='reset' onclick='reset()'>重置</button>
+    <strong class="offtext">原有MP: </strong><input id='ori' type='text'> <button class="btn btn-success btn-sm" id='confirm' onclick='init()'>确定</button> 
+    <strong class="offtext">当前MP: </strong><input id='current' type='text' disabled> <button class="btn btn-info btn-sm" id='reset' onclick='reset()'>重置</button>
 </p>
 
 <fieldset>
     <legend>
         <img data-toggle="tooltip" title="飞羽" src="https://i.imgur.com/V82rWNs.png">
     </legend>
-    <button class='a btn btn-xs' id='a1' onclick="recalculate(20)">等级1</button>
-    <button class='a btn btn-xs' id='a2' onclick="recalculate(30)">等级2</button>
-    <button class='a btn btn-xs' id='a3' onclick="recalculate(30)">等级3</button>
-    <button class='a btn btn-xs' id='a4' onclick="recalculate(60)">等级4</button>
-    <button class='a btn btn-xs' id='a5' onclick="recalculate(60)">等级5</button>
-    <button class='a btn btn-xs' id='a6' onclick="recalculate(100)">等级6</button>
-    <button class='a btn btn-xs' id='a7' onclick="recalculate(100)">等级7</button>
-    <button class='a btn btn-xs' id='a8' onclick="recalculate(200)">等级8</button>
-    <button class='a btn btn-xs' id='a9' onclick="recalculate(200)">等级9</button>
+    <button class='a btn btn-secondary btn-sm' id='a1' onclick="recalculate(20)">等级1</button>
+    <button class='a btn btn-secondary btn-sm' id='a2' onclick="recalculate(30)">等级2</button>
+    <button class='a btn btn-secondary btn-sm' id='a3' onclick="recalculate(30)">等级3</button>
+    <button class='a btn btn-secondary btn-sm' id='a4' onclick="recalculate(60)">等级4</button>
+    <button class='a btn btn-secondary btn-sm' id='a5' onclick="recalculate(60)">等级5</button>
+    <button class='a btn btn-secondary btn-sm' id='a6' onclick="recalculate(100)">等级6</button>
+    <button class='a btn btn-secondary btn-sm' id='a7' onclick="recalculate(100)">等级7</button>
+    <button class='a btn btn-secondary btn-sm' id='a8' onclick="recalculate(200)">等级8</button>
+    <button class='a btn btn-secondary btn-sm' id='a9' onclick="recalculate(200)">等级9</button>
 </fieldset>
 
 <br>
@@ -142,15 +142,15 @@ div ul li a:hover{
         <img data-toggle="tooltip" title="陨石" src="https://imgur.com/b7tdfYi.png?2">
         <img data-toggle="tooltip" title="台风" src="https://imgur.com/SLW76XH.png?2">
     </legend>
-    <button class='b btn btn-xs' id='b1' onclick="recalculate(40)">等级1</button>
-    <button class='b btn btn-xs' id='b2' onclick="recalculate(60)">等级2</button>
-    <button class='b btn btn-xs' id='b3' onclick="recalculate(60)">等级3</button>
-    <button class='b btn btn-xs' id='b4' onclick="recalculate(100)">等级4</button>
-    <button class='b btn btn-xs' id='b5' onclick="recalculate(100)">等级5</button>
-    <button class='b btn btn-xs' id='b6' onclick="recalculate(200)">等级6</button>
-    <button class='b btn btn-xs' id='b7' onclick="recalculate(200)">等级7</button>
-    <button class='b btn btn-xs' id='b8' onclick="recalculate(300)">等级8</button>
-    <button class='b btn btn-xs' id='b9' onclick="recalculate(300)">等级9</button>
+    <button class='b btn btn-secondary btn-sm' id='b1' onclick="recalculate(40)">等级1</button>
+    <button class='b btn btn-secondary btn-sm' id='b2' onclick="recalculate(60)">等级2</button>
+    <button class='b btn btn-secondary btn-sm' id='b3' onclick="recalculate(60)">等级3</button>
+    <button class='b btn btn-secondary btn-sm' id='b4' onclick="recalculate(100)">等级4</button>
+    <button class='b btn btn-secondary btn-sm' id='b5' onclick="recalculate(100)">等级5</button>
+    <button class='b btn btn-secondary btn-sm' id='b6' onclick="recalculate(200)">等级6</button>
+    <button class='b btn btn-secondary btn-sm' id='b7' onclick="recalculate(200)">等级7</button>
+    <button class='b btn btn-secondary btn-sm' id='b8' onclick="recalculate(300)">等级8</button>
+    <button class='b btn btn-secondary btn-sm' id='b9' onclick="recalculate(300)">等级9</button>
 </fieldset>
 
 <br>
@@ -163,30 +163,30 @@ div ul li a:hover{
         <img data-toggle="tooltip" title="驚濤駭浪" src="https://imgur.com/ILSaJRV.png?2">
         <img data-toggle="tooltip" title="怒焰沖天" src="https://imgur.com/nBiJdiM.png?2">
     </legend>
-    <button class='c btn btn-xs' id='c1' onclick="recalculate(60)">等级1</button>
-    <button class='c btn btn-xs' id='c2' onclick="recalculate(100)">等级2</button>
-    <button class='c btn btn-xs' id='c3' onclick="recalculate(100)">等级3</button>
-    <button class='c btn btn-xs' id='c4' onclick="recalculate(200)">等级4</button>
-    <button class='c btn btn-xs' id='c5' onclick="recalculate(200)">等级5</button>
-    <button class='c btn btn-xs' id='c6' onclick="recalculate(400)">等级6</button>
-    <button class='c btn btn-xs' id='c7' onclick="recalculate(400)">等级7</button>
-    <button class='c btn btn-xs' id='c8' onclick="recalculate(800)">等级8</button>
-    <button class='c btn btn-xs' id='c9' onclick="recalculate(800)">等级9</button>
+    <button class='c btn btn-secondary btn-sm' id='c1' onclick="recalculate(60)">等级1</button>
+    <button class='c btn btn-secondary btn-sm' id='c2' onclick="recalculate(100)">等级2</button>
+    <button class='c btn btn-secondary btn-sm' id='c3' onclick="recalculate(100)">等级3</button>
+    <button class='c btn btn-secondary btn-sm' id='c4' onclick="recalculate(200)">等级4</button>
+    <button class='c btn btn-secondary btn-sm' id='c5' onclick="recalculate(200)">等级5</button>
+    <button class='c btn btn-secondary btn-sm' id='c6' onclick="recalculate(400)">等级6</button>
+    <button class='c btn btn-secondary btn-sm' id='c7' onclick="recalculate(400)">等级7</button>
+    <button class='c btn btn-secondary btn-sm' id='c8' onclick="recalculate(800)">等级8</button>
+    <button class='c btn btn-secondary btn-sm' id='c9' onclick="recalculate(800)">等级9</button>
 </fieldset>
 
 <fieldset style="margin-top: 20px">
     <legend>
         <img data-toggle="tooltip" title="星河湧動" src="https://i.imgur.com/Q5R6C3c.png">
     </legend>
-    <button class='d btn btn-xs' id='d1' onclick="recalculate(75)">等级1</button>
-    <button class='d btn btn-xs' id='d2' onclick="recalculate(125)">等级2</button>
-    <button class='d btn btn-xs' id='d3' onclick="recalculate(125)">等级3</button>
-    <button class='d btn btn-xs' id='d4' onclick="recalculate(250)">等级4</button>
-    <button class='d btn btn-xs' id='d5' onclick="recalculate(250)">等级5</button>
-    <button class='d btn btn-xs' id='d6' onclick="recalculate(500)">等级6</button>
-    <button class='d btn btn-xs' id='d7' onclick="recalculate(500)">等级7</button>
-    <button class='d btn btn-xs' id='d8' onclick="recalculate(1000)">等级8</button>
-    <button class='d btn btn-xs' id='d9' onclick="recalculate(1000)">等级9</button>
+    <button class='d btn btn-secondary btn-sm' id='d1' onclick="recalculate(75)">等级1</button>
+    <button class='d btn btn-secondary btn-sm' id='d2' onclick="recalculate(125)">等级2</button>
+    <button class='d btn btn-secondary btn-sm' id='d3' onclick="recalculate(125)">等级3</button>
+    <button class='d btn btn-secondary btn-sm' id='d4' onclick="recalculate(250)">等级4</button>
+    <button class='d btn btn-secondary btn-sm' id='d5' onclick="recalculate(250)">等级5</button>
+    <button class='d btn btn-secondary btn-sm' id='d6' onclick="recalculate(500)">等级6</button>
+    <button class='d btn btn-secondary btn-sm' id='d7' onclick="recalculate(500)">等级7</button>
+    <button class='d btn btn-secondary btn-sm' id='d8' onclick="recalculate(1000)">等级8</button>
+    <button class='d btn btn-secondary btn-sm' id='d9' onclick="recalculate(1000)">等级9</button>
 </fieldset>
 </div>
 </div>
@@ -304,33 +304,33 @@ function calculate(){
 
     for(var i = 0;i < a.length;i++){
         if((current-a[i]) % 3 == 2){
-            as[i].setAttribute('class','a btn btn-success btn-xs');
+            as[i].setAttribute('class','a btn btn-success btn-sm');
         }else{
-            as[i].setAttribute('class','a btn btn-danger btn-xs');
+            as[i].setAttribute('class','a btn btn-danger btn-sm');
         }
     }
 
     for(var i = 0;i < a.length;i++){
         if((current-b[i]) % 3 == 1){
-            bs[i].setAttribute('class','b btn btn-success btn-xs');
+            bs[i].setAttribute('class','b btn btn-success btn-sm');
         }else{
-            bs[i].setAttribute('class','b btn btn-danger btn-xs');
+            bs[i].setAttribute('class','b btn btn-danger btn-sm');
         }
     }
 
     for(var i = 0;i < a.length;i++){
         if((current-c[i]) % 3 == 0){
-            cs[i].setAttribute('class','c btn btn-success btn-xs');
+            cs[i].setAttribute('class','c btn btn-success btn-sm');
         }else{
-            cs[i].setAttribute('class','c btn btn-danger btn-xs');
+            cs[i].setAttribute('class','c btn btn-danger btn-sm');
         }
     }
 
     for(var i = 0;i < a.length;i++){
         if((current-d[i]) % 3 == 0){
-            ds[i].setAttribute('class','d btn btn-success btn-xs');
+            ds[i].setAttribute('class','d btn btn-success btn-sm');
         }else{
-            ds[i].setAttribute('class','d btn btn-danger btn-xs');
+            ds[i].setAttribute('class','d btn btn-danger btn-sm');
         }
     }
 
@@ -345,7 +345,8 @@ function recalculate(mana){
 
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip();

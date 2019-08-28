@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link type="image/x-icon" rel="shortcut icon" href="https://verizonimage.funmily.com/upload/platform/phpgrid/20140626163225110.ico">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>地标代码</title>
 <style>
 div {
@@ -102,7 +102,7 @@ div ul li a:hover{
 <div class='block'>
 <div style="height: 187px;">
     <div class="alert alert-success" role="alert" style="text-align: center;">
-        <strong>Funmily远古神龙[♫夢の爷爷♫]：紫色活跃度宝箱带梅迪，1次1个，有兴趣者可在闲聊区留言或游戏里面找我</strong>
+        <strong>Funmily远古神龙[♫夢の爷爷♫]：紫色活跃度宝箱带梅迪,1次1个</strong>
     </div>
 </div>
 <div style="height: 49px;">
@@ -198,7 +198,7 @@ div ul li a:hover{
 
 <input id="pos" type="text" placeholder="输入坐标，例子：23,56" onkeyup="validate()">
 
-<button id="generate" onclick=boom(this) data-toggle="tooltip" title="代码有误，请选择至少一个地图" class="btn btn-xs btn-danger">产出代码</button>
+<button id="generate" onclick=boom(this) data-toggle="tooltip" title="代码有误，请选择至少一个地图" class="btn btn-sm btn-danger">产出代码</button>
 </div>
 </div>
 <span class="abgne"></span>
@@ -225,8 +225,8 @@ div ul li a:hover{
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
 $(document).ready(function() {
     $('.js-example-responsive').select2({
@@ -239,16 +239,12 @@ $(document).ready(function() {
     
 });
 
-//$(document).ready(function() {
-//    $('[data-toggle="tooltip"]').tooltip();
-//});
-
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 
 function boom(element){
-    $(element).attr('data-original-title','代码已复制').tooltip('fixTitle').tooltip('show');
+    $(element).attr('data-original-title','代码已复制').tooltip('show');
     $(element).tooltip().attr('data-original-title','一键复制代码');
 }
 
@@ -258,15 +254,15 @@ function validate(){
     var button = document.getElementById("generate");
     var map = document.getElementById("map").value;
     if(map == ""){
-        button.setAttribute("class","btn btn-xs btn-danger");
+        button.setAttribute("class","btn btn-sm btn-danger");
         button.setAttribute("data-original-title","代码有误，请选择至少一个地图")
     }
     else if(map){
         if(input.value.match(format)){
-            button.setAttribute("class","btn btn-xs btn-success");
+            button.setAttribute("class","btn btn-sm btn-success");
             button.setAttribute("data-original-title","一键复制代码")
         }else{
-            button.setAttribute("class","btn btn-xs btn-warning");
+            button.setAttribute("class","btn btn-sm btn-warning");
             button.setAttribute("data-original-title","坐标格式有误，请做出相应的更正")
         }
     }

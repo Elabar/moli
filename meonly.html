@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link type="image/x-icon" rel="shortcut icon" href="https://verizonimage.funmily.com/upload/platform/phpgrid/20140626163225110.ico">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>我的专区</title>
 <style>
@@ -109,7 +109,7 @@ div ul li a:hover{
 <div class='block'>
 <div style="height: 187px;">
     <div class="alert alert-success" role="alert" style="text-align: center;">
-        <strong>Funmily远古神龙[♫夢の爷爷♫]：紫色活跃度宝箱带梅迪，1次1个，有兴趣者可在闲聊区留言或游戏里面找我</strong>
+        <strong>Funmily远古神龙[♫夢の爷爷♫]：紫色活跃度宝箱带梅迪,1次1个</strong>
     </div>
 </div>
 <div style="height: 49px;">
@@ -126,36 +126,36 @@ div ul li a:hover{
     <div id="notification" class="alert alert-info" role="alert">
         <strong id="notiText">你可以在这里随心制作自己喜欢的代码，制作后的代码也不会消失。</strong>
     </div>
-    <table class="table">
+    <table class="table table-striped table-dark">
     <tbody>
-    <tr class="bg-warning">
+    <tr>
     <td><strong>按键名称</strong></td>
     <td><input type="text" id="title" placeholder="飞王地图"></td>
     </tr>
-    <tr class="bg-warning">
+    <tr>
     <td><strong>代码</strong></td>
     <td><input type="text" id="code" style="width:100%" placeholder="[@MA|88|天空之城] [@MA|71|圣灵殿堂]"></td>
     </tr>
-    <tr class="bg-warning">
+    <tr>
     <td><strong>按键颜色</strong></td>
     <td>
         <select id="color" class="js-example-responsive" style="width: 50%">
-            <option value="customized btn btn-xs">浅灰色</option>
-            <option value="customized btn btn-xs btn-default">白色</option>
-            <option value="customized btn btn-xs btn-danger">红色</option>
-            <option value="customized btn btn-xs btn-warning">橘色</option>
-            <option value="customized btn btn-xs btn-success">绿色</option>
-            <option value="customized btn btn-xs btn-primary">深蓝色</option>
-            <option value="customized btn btn-xs btn-info">浅蓝色</option>
+            <option value="customized btn btn-sm btn-secondary">浅灰色</option>
+            <option value="customized btn btn-sm btn-light">白色</option>
+            <option value="customized btn btn-sm btn-danger">红色</option>
+            <option value="customized btn btn-sm btn-warning">橘色</option>
+            <option value="customized btn btn-sm btn-success">绿色</option>
+            <option value="customized btn btn-sm btn-primary">深蓝色</option>
+            <option value="customized btn btn-sm btn-info">浅蓝色</option>
         </select>
     </td>
     </tr>
-    <tr class="bg-warning">
+    <tr>
     <td></td>
     <td>
-        <input id="gen" onclick="generate()" class="btn btn-xs btn-primary" type="button" value="产出自定义快捷键">
-        <input id="res" onclick="reset()" class="btn btn-xs btn-warning" type="button" value="重置快捷键">
-        <input onclick="deleteMode(this)" class="btn btn-xs btn-danger" type="button" value="删除模式">
+        <input id="gen" onclick="generate()" class="btn btn-sm btn-primary" type="button" value="产出自定义快捷键">
+        <input id="res" onclick="reset()" class="btn btn-sm btn-warning" type="button" value="重置快捷键">
+        <input onclick="deleteMode(this)" class="btn btn-sm btn-danger" type="button" value="删除模式">
     </td>
     </tr>
     </tbody>
@@ -174,8 +174,8 @@ div ul li a:hover{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
 // Check browser support
 if (typeof(Storage) == "undefined") {
@@ -200,12 +200,32 @@ function retrieve(){
             
             var tempColors = JSON.parse(localStorage.getItem("colors"));
             for(var i = 0;i < titles.length;i++){
-                tempColors.push("customized btn btn-xs btn-default");
+                tempColors.push("customized btn btn-sm btn-default");
             }
             localStorage.setItem("colors",JSON.stringify(tempColors));
         }
         var colors = JSON.parse(localStorage.getItem("colors"));
 
+        //This piece of code should be deleted in the future (2019 December)
+        for(let c = 0;c < colors.length;c++){
+            if(colors[c] == "customized btn btn-xs"){
+                colors[c] = "customized btn btn-sm btn-secondary"
+            }else if(colors[c] == "customized btn btn-xs btn-default"){
+                colors[c] = "customized btn btn-sm btn-light"
+            }else if(colors[c] == "customized btn btn-xs btn-danger"){
+                colors[c] = "customized btn btn-sm btn-danger"
+            }else if(colors[c] == "customized btn btn-xs btn-warning"){
+                colors[c] = "customized btn btn-sm btn-warning"
+            }else if(colors[c] == "customized btn btn-xs btn-success"){
+                colors[c] = "customized btn btn-sm btn-success"
+            }else if(colors[c] == "customized btn btn-xs btn-primary"){
+                colors[c] = "customized btn btn-sm btn-primary"
+            }else if(colors[c] == "customized btn btn-xs btn-info"){
+                colors[c] = "customized btn btn-sm btn-info"
+            }
+        }
+        localStorage.setItem("colors",JSON.stringify(colors));
+        
         for(let i = 0;i < titles.length;i++){
             
             var button1 = document.createElement("button");
@@ -339,7 +359,7 @@ function reset(){
 <script>
 
 function boom(element){
-    $(element).attr('data-original-title','代码已复制').tooltip('fixTitle').tooltip('show');
+    $(element).attr('data-original-title','代码已复制').tooltip('show');
     $(element).tooltip().attr('data-original-title','一键复制代码');
 }
 </script>

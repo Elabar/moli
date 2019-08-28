@@ -187,6 +187,11 @@ div ul li a:hover{
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
 <script>
+if('serviceWorker' in navigator) {
+  navigator.serviceWorker
+           .register("/sw.js")
+           .then(function() { console.log("Service Worker Registered"); });
+}
 var btns = document.querySelectorAll('button');
 var clipboard = new ClipboardJS(btns);
 </script>

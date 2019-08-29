@@ -131,6 +131,7 @@ div ul li a:hover{
 </div>
 <div class="space">
 <body>
+    <button class="btn btn-info btn-sm" onclick="switchRingtone(this)" id="ringtone" style="float: right;">提示音：开</button>
     <strong class="offtext">昵称: </strong><input id='name' type='text' oninput="validate()" disabled="disabled">
     <button class="btn btn-success btn-sm" id='confirm' disabled="disabled" onclick='confirm()'>正在连接...</button> 
     <div id="msg_box" class="msg_area">
@@ -225,8 +226,10 @@ ws.onmessage = function(event){
         var msg = data.FROM + ": " + data.msg;
         msgNode.appendChild(document.createTextNode(msg));
         box.appendChild(msgNode);
-        box.scrollTop = box.scrollHeight;    
-        sound.play();
+        box.scrollTop = box.scrollHeight;
+        if(document.getElementById("ringtone").innerHTML === "提示音：开"){
+            sound.play();
+        }
     }
 }
 
@@ -270,6 +273,14 @@ function send(){
     box.appendChild(msgNode);
     box.scrollTop = box.scrollHeight;
     document.getElementById("msg").value = "";
+}
+
+function switchRingtone(element){
+    if(element.innerHTML === "提示音：开"){
+        element.innerHTML = "提示音：关"
+    }else{
+        element.innerHTML = "提示音：开"
+    }
 }
 
 function validate(){

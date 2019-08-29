@@ -1,6 +1,8 @@
+const expectedCaches = ['moliAssistantv3'];
+
 self.addEventListener('install', function(e) {
     e.waitUntil(
-        caches.open('moliAssistant').then(function(cache) {
+        caches.open('moliAssistantv3').then(function(cache) {
         return cache.addAll([
             '/',
             '/index',
@@ -16,12 +18,22 @@ self.addEventListener('install', function(e) {
 });
 
 self.addEventListener('activate', event => {
-    event.waitUntil(self.clients.claim());
+    event.waitUntil(
+        caches.keys().then(keys => Promise.all(
+            keys.map(key => {
+                if (!expectedCaches.includes(key)) {
+                    return caches.delete(key);
+                }
+            })
+        )).then(() => {
+            console.log('V3 now ready to handle fetches!');
+        })
+    );
 });
 
 self.addEventListener('fetch', function(event) {
     event.respondWith(
-        caches.open('moliAssistant')
+        caches.open('moliAssistantv3')
         .then(cache => cache.match(event.request, {ignoreSearch:true}))
         .then(response => {
             return response || fetch(event.request)

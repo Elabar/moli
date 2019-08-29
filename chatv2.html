@@ -131,9 +131,8 @@ div ul li a:hover{
 </div>
 <div class="space">
 <body>
-    <strong class="offtext">昵称: </strong><input id='name' type='text'>
+    <strong class="offtext">昵称: </strong><input id='name' type='text' oninput="validate()" disabled="disabled">
     <button class="btn btn-success btn-sm" id='confirm' disabled="disabled" onclick='confirm()'>正在连接...</button> 
-    <button class="btn btn-danger btn-sm" id='reset' disabled="disabled" onclick='reset()'>重置</button> 
     <div id="msg_box" class="msg_area">
 
     </div>
@@ -146,13 +145,14 @@ div ul li a:hover{
 </div>
 <span class="abgne"></span>
 <div id="userList" style="height: 49px;background-color: #333;width:800px;color:white">
-    
+    正在加载在线用户名单
 </div>
 <div class="thanks"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>    
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
 var admin = new WebSocket("wss://cloud.achex.ca/moliAssist");
+var list = []
 admin.onopen = function(event){
     var data = {
         "auth": "CHECKSTATUSACC",
@@ -176,6 +176,7 @@ admin.onmessage = function(event){
                 userName.push(data.users[user].username)
             }
         }
+        list = [...userName];
         var word = "在线用户："
         for(name in userName){
             word += userName[name] + " | "
@@ -212,8 +213,8 @@ var sound = new Audio('ios_notification.mp3');
 sound.preload = "auto";
 ws.onopen = function(event){
     var enter = document.getElementById("confirm");
-    enter.innerHTML = "确定"
-    enter.disabled = false;
+    enter.innerHTML = "昵称不能为空"
+    document.getElementById("name").disabled = false;
 }
 
 ws.onmessage = function(event){
@@ -231,11 +232,11 @@ ws.onmessage = function(event){
 
 function confirm(){
     var enter = document.getElementById("confirm");
-    var reset = document.getElementById("reset");
+
     var send = document.getElementById("send");
     var textBox = document.getElementById("msg");
     enter.setAttribute("disabled", "disabled");
-    reset.disabled = false;
+
     send.disabled = false;
     textBox.disabled = false;
     var data = {
@@ -252,6 +253,7 @@ function confirm(){
         "msg": "JOINED MOLI ASSIST SERVER 023146"
     };
     ws.send(JSON.stringify(joinNoti));
+    document.getElementById("name").setAttribute("disabled","disabled")
 }
 
 function send(){
@@ -268,6 +270,32 @@ function send(){
     box.appendChild(msgNode);
     box.scrollTop = box.scrollHeight;
     document.getElementById("msg").value = "";
+}
+
+function validate(){
+    var input = document.getElementById("name").value;
+    var confirm = document.getElementById("confirm");
+    var okay = true;
+    for(name in list){
+        if(input == list[name]){
+            okay = false;
+            break;
+        }
+    }
+    if(/\s/.test(input) || input == ""){
+        okay = false;
+    }
+    if(okay){
+        confirm.disabled = false;
+        confirm.innerHTML = "确定";
+    }else{
+        confirm.setAttribute("disabled", "disabled");
+        if(/\s/.test(input) || input == ""){
+            confirm.innerHTML = "昵称不能有空格或空"
+        }else{
+            confirm.innerHTML = "已有相同昵称存在"
+        }
+    }
 }
 </script>
 </body>

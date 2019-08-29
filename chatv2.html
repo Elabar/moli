@@ -127,6 +127,9 @@ div ul li a:hover{
 </div>
 <div class="space">
 <body>
+    <audio preload="auto" id="ios_notification">
+        <source src="/ios_notification.mp3">
+    </audio>
     <strong class="offtext">昵称: </strong><input id='name' type='text'>
     <button class="btn btn-success btn-sm" id='confirm' onclick='confirm()'>确定</button> 
     <button class="btn btn-danger btn-sm" id='reset' disabled="disabled" onclick='reset()'>重置</button> 
@@ -165,16 +168,15 @@ msg.addEventListener("keyup", function(event) {
 var ws = new WebSocket("wss://cloud.achex.ca/moliAssist");
 
 ws.onmessage = function(event){
-    console.log(event);
     var data = JSON.parse(event.data)
     if(data.toH == "moliAssist"){
-        console.log("reachHERE")
         var box = document.getElementById("msg_box");
         var msgNode = document.createElement("p");
         var msg = data.FROM + ": " + data.msg;
         msgNode.appendChild(document.createTextNode(msg));
         box.appendChild(msgNode);
         box.scrollTop = box.scrollHeight;
+        document.getElementById('ios_notification').play();
     }
 }
 

@@ -8,7 +8,8 @@ self.addEventListener('install', function(e) {
             '/detetor',
             '/custom',
             '/chat',
-            '/404'
+            '/404',
+            '/ios_notification.mp3'
         ]).then(()=>self.skipWaiting());
         })
     );

@@ -166,6 +166,7 @@ admin.onopen = function(event){
         "joinHub": "moliAssist"
     }
     admin.send(JSON.stringify(hub));
+    getHistory()
 }
 
 admin.onmessage = function(event){
@@ -183,15 +184,39 @@ admin.onmessage = function(event){
             word += userName[name] + " | "
         }
         document.getElementById("userList").innerHTML = word;
-    }
-    if(data.toH == "moliAssist" && data.msg == "JOINED MOLI ASSIST SERVER 023146"){
+    }else if(data.toH == "moliAssist" && data.msg == "JOINED MOLI ASSIST SERVER 023146"){
+        var payload = {"serverstat":true};
+        admin.send(JSON.stringify(payload));
+    }else if(data.leftHub == "moliAssist"){
         var payload = {"serverstat":true};
         admin.send(JSON.stringify(payload));
     }
-    if(data.leftHub == "moliAssist"){
-        var payload = {"serverstat":true};
-        admin.send(JSON.stringify(payload));
+
+    if(data.toH == "moliAssist" && data.msg != "JOINED MOLI ASSIST SERVER 023146" && data.FROM != document.getElementById("name").value && document.getElementById("name").value === "") {
+        var box = document.getElementById("msg_box");
+        var msgNode = document.createElement("p");
+        var msg = data.FROM + ": " + data.msg;
+        msgNode.appendChild(document.createTextNode(msg));
+        box.appendChild(msgNode);
+        box.scrollTop = box.scrollHeight;
     }
+}
+
+async function getHistory(){
+    var msgs = []
+    await fetch('https://jsonblob.com/api/jsonBlob/aa344a7d-ca87-11e9-8c31-fbcc84678f55').
+    then( response => {
+        return response.json()
+    }).then( responseJson => {
+        Array.prototype.push.apply(msgs, responseJson.messages);
+    })
+    var box = document.getElementById("msg_box");
+    for(msg in msgs){
+        var msgNode = document.createElement("p");
+        msgNode.appendChild(document.createTextNode(msgs[msg]));
+        box.appendChild(msgNode);   
+    }
+    box.scrollTop = box.scrollHeight;
 }
 
 var nameInput = document.getElementById("name");
@@ -231,16 +256,21 @@ ws.onmessage = function(event){
             sound.play();
         }
     }
+    if(data.auth == "OK"){
+        var send = document.getElementById("send");
+        document.getElementById("send").innerHTML = "发送";
+        send.disabled = false;
+    }
 }
 
 function confirm(){
     var enter = document.getElementById("confirm");
 
-    var send = document.getElementById("send");
+    document.getElementById("send").innerHTML = "登录";
     var textBox = document.getElementById("msg");
     enter.setAttribute("disabled", "disabled");
 
-    send.disabled = false;
+    
     textBox.disabled = false;
     var data = {
         "auth": document.getElementById("name").value,
@@ -259,7 +289,9 @@ function confirm(){
     document.getElementById("name").setAttribute("disabled","disabled")
 }
 
-function send(){
+async function send(){
+    document.getElementById("send").setAttribute("disabled", "disabled");
+    document.getElementById("send").innerHTML = "处理"
     var box = document.getElementById("msg_box");
     var msgNode = document.createElement("p");
     var msg = document.getElementById("msg").value;
@@ -273,6 +305,27 @@ function send(){
     box.appendChild(msgNode);
     box.scrollTop = box.scrollHeight;
     document.getElementById("msg").value = "";
+    
+    var msgs = []
+    await fetch('https://jsonblob.com/api/jsonBlob/aa344a7d-ca87-11e9-8c31-fbcc84678f55').
+    then( response => {
+        return response.json()
+    }).then( responseJson => {
+        Array.prototype.push.apply(msgs, responseJson.messages);
+    })
+    msgs.push(msg);
+    fetch('https://jsonblob.com/api/jsonBlob/aa344a7d-ca87-11e9-8c31-fbcc84678f55',{
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'messages': msgs
+        })
+    })
+    document.getElementById("send").disabled = false;
+    document.getElementById("send").innerHTML = "发送"
 }
 
 function switchRingtone(element){

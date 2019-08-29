@@ -35,6 +35,10 @@ body{
     background-color: black;
 }
 
+#userList {
+    overflow-x: auto;
+}
+
 ul.navigation {
     list-style-type: none;
     margin: 0;
@@ -127,11 +131,8 @@ div ul li a:hover{
 </div>
 <div class="space">
 <body>
-    <audio preload="auto" id="ios_notification">
-        <source src="/ios_notification.mp3">
-    </audio>
     <strong class="offtext">昵称: </strong><input id='name' type='text'>
-    <button class="btn btn-success btn-sm" id='confirm' onclick='confirm()'>确定</button> 
+    <button class="btn btn-success btn-sm" id='confirm' disabled="disabled" onclick='confirm()'>正在连接...</button> 
     <button class="btn btn-danger btn-sm" id='reset' disabled="disabled" onclick='reset()'>重置</button> 
     <div id="msg_box" class="msg_area">
 
@@ -144,12 +145,53 @@ div ul li a:hover{
 </div>
 </div>
 <span class="abgne"></span>
-<div style="height: 49px;background-color: #333;width:800px;">
+<div id="userList" style="height: 49px;background-color: #333;width:800px;color:white">
+    
 </div>
 <div class="thanks"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>    
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <script>
+var admin = new WebSocket("wss://cloud.achex.ca/moliAssist");
+admin.onopen = function(event){
+    var data = {
+        "auth": "CHECKSTATUSACC",
+        "passwd": "none"
+    };
+    admin.send(JSON.stringify(data));
+    var payload = {"serverstat":true};
+    admin.send(JSON.stringify(payload));
+    var hub = {
+        "joinHub": "moliAssist"
+    }
+    admin.send(JSON.stringify(hub));
+}
+
+admin.onmessage = function(event){
+    var data = JSON.parse(event.data)
+    var userName = [];
+    if(data.users){
+        for(user in data.users){
+            if(data.users[user].origin == "https://moli.surge.sh" && data.users[user].username != "CHECKSTATUSACC"){
+                userName.push(data.users[user].username)
+            }
+        }
+        var word = "在线用户："
+        for(name in userName){
+            word += userName[name] + " | "
+        }
+        document.getElementById("userList").innerHTML = word;
+    }
+    if(data.toH == "moliAssist" && data.msg == "JOINED MOLI ASSIST SERVER 023146"){
+        var payload = {"serverstat":true};
+        admin.send(JSON.stringify(payload));
+    }
+    if(data.leftHub == "moliAssist"){
+        var payload = {"serverstat":true};
+        admin.send(JSON.stringify(payload));
+    }
+}
+
 var nameInput = document.getElementById("name");
 nameInput.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
@@ -166,17 +208,24 @@ msg.addEventListener("keyup", function(event) {
     }
 });
 var ws = new WebSocket("wss://cloud.achex.ca/moliAssist");
+var sound = new Audio('ios_notification.mp3');
+sound.preload = "auto";
+ws.onopen = function(event){
+    var enter = document.getElementById("confirm");
+    enter.innerHTML = "确定"
+    enter.disabled = false;
+}
 
 ws.onmessage = function(event){
     var data = JSON.parse(event.data)
-    if(data.toH == "moliAssist"){
+    if(data.toH == "moliAssist" && data.msg != "JOINED MOLI ASSIST SERVER 023146"){
         var box = document.getElementById("msg_box");
         var msgNode = document.createElement("p");
         var msg = data.FROM + ": " + data.msg;
         msgNode.appendChild(document.createTextNode(msg));
         box.appendChild(msgNode);
-        box.scrollTop = box.scrollHeight;
-        document.getElementById('ios_notification').play();
+        box.scrollTop = box.scrollHeight;    
+        sound.play();
     }
 }
 
@@ -198,6 +247,11 @@ function confirm(){
         "joinHub": "moliAssist"
     }
     ws.send(JSON.stringify(hub));
+    var joinNoti = {
+        "toH": "moliAssist",
+        "msg": "JOINED MOLI ASSIST SERVER 023146"
+    };
+    ws.send(JSON.stringify(joinNoti));
 }
 
 function send(){

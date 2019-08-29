@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link type="image/x-icon" rel="shortcut icon" href="https://verizonimage.funmily.com/upload/platform/phpgrid/20140626163225110.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>闲聊区</title>
+<style>
+div {
+    margin:auto;
+}
+
+.msg_area {
+    overflow-y: scroll;
+    height: 365px;
+    background-color: white;
+    word-wrap: break-word;
+}
+
+div.block {
+    width: 800px;
+    height: 710px;
+    background-image: url(https://i.imgur.com/2X0I34c.png);
+}
+
+div.thanks{
+    height: 290px;
+    width: 800px;
+    background-image: url(https://i.imgur.com/xZc5YLa.png);
+}
+
+body{
+    background-color: black;
+}
+
+ul.navigation {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+    bottom: 0;
+}
+
+div.space {
+    margin: 20px;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover:not(.active) {
+    background-color: #111;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+div ul li a:hover{
+    text-decoration: none;
+    color:white;
+}
+
+.hori-select{
+    display:inline;
+    background-color: white;
+    margin:0;
+    padding:0;
+    
+}
+.btn {
+    margin-right:5px;
+    margin-bottom:5px;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+    
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: #F90;	
+    background-image: -webkit-linear-gradient(45deg,
+                                                rgba(255, 255, 255, .2) 25%,
+                                                transparent 25%,
+                                                transparent 50%,
+                                                rgba(255, 255, 255, .2) 50%,
+                                                rgba(255, 255, 255, .2) 75%,
+                                                transparent 75%,
+                                                transparent) 
+}
+</style>
+</head>
+<div class='block'>
+<div style="height: 187px;">
+    <div class="alert alert-success" role="alert" style="text-align: center;">
+        <strong>Funmily远古神龙[♫夢の爷爷♫]：紫色活跃度宝箱带梅迪,1次1个</strong>
+    </div>
+</div>
+<div style="height: 49px;">
+    <ul class="navigation">
+        <li><a href="/">代码专区</a></li>
+        <li><a href="detetor">魔能元素检测器</a></li>
+        <li><a href="custom">地标代码</a></li>
+        <li><a href="meonly">我的专区</a></li>
+        <li><a class="active" href="chat">闲聊区</a></li>
+    </ul>
+</div>
+<div class="space">
+<body>
+    <strong class="offtext">昵称: </strong><input id='name' type='text'>
+    <button class="btn btn-success btn-sm" id='confirm' onclick='confirm()'>确定</button> 
+    <button class="btn btn-danger btn-sm" id='reset' disabled="disabled" onclick='reset()'>重置</button> 
+    <div id="msg_box" class="msg_area">
+
+    </div>
+        <input style="width:700px;" id='msg' type='text' disabled="disabled">
+        <button class="btn btn-success btn-sm" id='send' disabled="disabled" onclick='send()'>发送</button> 
+    <div id="msg">
+
+    </div>
+</div>
+</div>
+<span class="abgne"></span>
+<div style="height: 49px;background-color: #333;width:800px;">
+</div>
+<div class="thanks"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>    
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+var nameInput = document.getElementById("name");
+nameInput.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("confirm").click();
+    }
+});
+
+var msg = document.getElementById("msg");
+msg.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("send").click();
+    }
+});
+var ws = new WebSocket("wss://cloud.achex.ca/moliAssist");
+
+ws.onmessage = function(event){
+    console.log(event);
+    var data = JSON.parse(event.data)
+    if(data.toH == "moliAssist"){
+        console.log("reachHERE")
+        var box = document.getElementById("msg_box");
+        var msgNode = document.createElement("p");
+        var msg = data.FROM + ": " + data.msg;
+        msgNode.appendChild(document.createTextNode(msg));
+        box.appendChild(msgNode);
+        box.scrollTop = box.scrollHeight;
+    }
+}
+
+function confirm(){
+    var enter = document.getElementById("confirm");
+    var reset = document.getElementById("reset");
+    var send = document.getElementById("send");
+    var textBox = document.getElementById("msg");
+    enter.setAttribute("disabled", "disabled");
+    reset.disabled = false;
+    send.disabled = false;
+    textBox.disabled = false;
+    var data = {
+        "auth": document.getElementById("name").value,
+        "passwd": "none"
+    };
+    ws.send(JSON.stringify(data));
+    var hub = {
+        "joinHub": "moliAssist"
+    }
+    ws.send(JSON.stringify(hub));
+}
+
+function send(){
+    var box = document.getElementById("msg_box");
+    var msgNode = document.createElement("p");
+    var msg = document.getElementById("msg").value;
+    var data = {
+        "toH": "moliAssist",
+        "msg": msg
+    };
+    ws.send(JSON.stringify(data));
+    msg = document.getElementById("name").value + ": " + msg;
+    msgNode.appendChild(document.createTextNode(msg));
+    box.appendChild(msgNode);
+    box.scrollTop = box.scrollHeight;
+    document.getElementById("msg").value = "";
+}
+</script>
+</body>
+</html>

@@ -7,7 +7,7 @@ self.addEventListener('install', function(e) {
             '/meonly',
             '/detetor',
             '/custom',
-            '/chat',
+            '/chatv2',
             '/404',
             '/ios_notification.mp3'
         ]).then(()=>self.skipWaiting());

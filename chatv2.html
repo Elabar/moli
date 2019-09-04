@@ -251,7 +251,7 @@ ws.onmessage = function(event){
     if(data.toH == "moliAssist" && data.msg != "JOINED MOLI ASSIST SERVER 023146"){
         var box = document.getElementById("msg_box");
         var msgNode = document.createElement("p");
-        var msg = data.FROM + ": " + data.msg;
+        var msg = "[" + new Date().toLocaleString() + "] " + data.FROM + ": " + data.msg;
         msgNode.appendChild(document.createTextNode(msg));
         box.appendChild(msgNode);
         box.scrollTop = box.scrollHeight;
@@ -272,9 +272,8 @@ function confirm(){
     document.getElementById("send").innerHTML = "登录";
     var textBox = document.getElementById("msg");
     enter.setAttribute("disabled", "disabled");
-
-    
     textBox.disabled = false;
+    textBox.focus();
     var data = {
         "auth": document.getElementById("name").value,
         "passwd": "none"
@@ -303,7 +302,7 @@ async function send(){
         "msg": msg
     };
     ws.send(JSON.stringify(data));
-    msg = document.getElementById("name").value + ": " + msg;
+    msg = "[" + new Date().toLocaleString() + "] " + document.getElementById("name").value + ": " + msg;
     msgNode.appendChild(document.createTextNode(msg));
     box.appendChild(msgNode);
     box.scrollTop = box.scrollHeight;

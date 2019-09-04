@@ -251,7 +251,7 @@ ws.onmessage = function(event){
     if(data.toH == "moliAssist" && data.msg != "JOINED MOLI ASSIST SERVER 023146"){
         var box = document.getElementById("msg_box");
         var msgNode = document.createElement("p");
-        var msg = "[" + new Date().toLocaleString() + "] " + data.FROM + ": " + data.msg;
+        var msg = "[" + new Date().toLocaleString('en-US') + "] " + data.FROM + ": " + data.msg;
         msgNode.appendChild(document.createTextNode(msg));
         box.appendChild(msgNode);
         box.scrollTop = box.scrollHeight;
@@ -302,7 +302,7 @@ async function send(){
         "msg": msg
     };
     ws.send(JSON.stringify(data));
-    msg = "[" + new Date().toLocaleString() + "] " + document.getElementById("name").value + ": " + msg;
+    msg = "[" + new Date().toLocaleString('en-US') + "] " + document.getElementById("name").value + ": " + msg;
     msgNode.appendChild(document.createTextNode(msg));
     box.appendChild(msgNode);
     box.scrollTop = box.scrollHeight;

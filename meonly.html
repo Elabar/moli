@@ -282,7 +282,7 @@ function done(){
 
 function deleteThis(btn){
     btn.remove();
-    $(btn).tooltip('destroy');
+    $(btn).tooltip('dispose');
     var titles = JSON.parse(localStorage.getItem("titles"));
     var codes = JSON.parse(localStorage.getItem("codes"));
     var colors = JSON.parse(localStorage.getItem("colors"));

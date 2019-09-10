@@ -1,8 +1,8 @@
-const expectedCaches = ['moliAssistantv9'];
+const expectedCaches = ['moliAssistantv10'];
 
 self.addEventListener('install', function(e) {
     e.waitUntil(
-        caches.open('moliAssistantv9').then(function(cache) {
+        caches.open('moliAssistantv10').then(function(cache) {
         return cache.addAll([
             '/',
             '/index',
@@ -33,7 +33,7 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', function(event) {
     event.respondWith(
-        caches.open('moliAssistantv9')
+        caches.open('moliAssistantv10')
         .then(cache => cache.match(event.request, {ignoreSearch:true}))
         .then(response => {
             return response || fetch(event.request)

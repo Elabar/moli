@@ -1,8 +1,8 @@
-const expectedCaches = ['moliAssistantv10'];
+const expectedCaches = ['moliAssistantv11'];
 
 self.addEventListener('install', function(e) {
     e.waitUntil(
-        caches.open('moliAssistantv10').then(function(cache) {
+        caches.open('moliAssistantv11').then(function(cache) {
         return cache.addAll([
             '/',
             '/index',
@@ -26,14 +26,14 @@ self.addEventListener('activate', event => {
                 }
             })
         )).then(() => {
-            console.log('V3 now ready to handle fetches!');
+            console.log('V11 now ready to handle fetches!');
         })
     );
 });
 
 self.addEventListener('fetch', function(event) {
     event.respondWith(
-        caches.open('moliAssistantv10')
+        caches.open('moliAssistantv11')
         .then(cache => cache.match(event.request, {ignoreSearch:true}))
         .then(response => {
             return response || fetch(event.request)

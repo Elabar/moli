@@ -170,6 +170,12 @@ admin.onopen = function(event){
     }
     admin.send(JSON.stringify(hub));
     getHistory()
+
+    var joinNoti = {
+        "toH": "moliAssist",
+        "msg": "JOINED MOLI ASSIST SERVER 023146"
+    };
+    admin.send(JSON.stringify(joinNoti));
 }
 
 admin.onmessage = function(event){
@@ -244,6 +250,12 @@ ws.onopen = function(event){
     var enter = document.getElementById("confirm");
     enter.innerHTML = "昵称不能为空"
     document.getElementById("name").disabled = false;
+
+    var joinNoti = {
+        "toH": "moliAssist",
+        "msg": "JOINED MOLI ASSIST SERVER 023146"
+    };
+    ws.send(JSON.stringify(joinNoti));
 }
 
 ws.onmessage = function(event){
